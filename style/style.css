@@ -4,10 +4,11 @@
     color: #383d41;
 }
 
+/*
 .body{
     background-color: whitesmoke;
 }
-
+*/
 .vert-offset-top-1{
     margin-top: 1em;
 }
@@ -55,4 +56,11 @@ li{
 .main{
     /*background-color: #cce5ff;*/
 }
+
+/*
+ul li:hover{
+    border-bottom-color: white;
+    border-bottom-width: 3px;
+}
+*/
 
