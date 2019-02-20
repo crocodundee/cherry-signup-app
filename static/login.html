@@ -6,47 +6,38 @@
     <link rel="stylesheet" type="text/css" href="/style/style.css">
     <link rel="stylesheet" type="text/css" href="/style/bootstrap-grid.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="/favicon.ico">
 </head>
 <body>
+    <!-- Navigation -->
     <nav class="navbar navbar-default">
         <div class="container-fluid">
-      <a id="locky" class="navbar-brand" href="#"><!--<span class="h-25 w-25 glyphicon glyphicon-lock"></span>-->Locky</a>
-    <ul class="nav navbar-nav">
-      <li><a href="/static/index.html">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Feaches</a></li>
-      <li><a href="#">Control</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li class="active"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>
+            <a id="locky" class="navbar-brand" href="/"><!--<span class="h-25 w-25 glyphicon glyphicon-lock"></span>--> Locky</a>
+            <ul class="nav navbar-nav">
+            <!--<li><a href="/">Home</a></li>-->
+                <li><a href="#">About</a></li>
+                <li><a href="#">Feaches</a></li>
+                <li><a href="/control">Control</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li class="active"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
         </div>
     </nav>
+    <!-- End navigation -->
 
+    <!-- Content -->
+    <div class="container">
+        {{ content }}
+        <h3 class="col-sm-offset-2">{{ result }}</h3>
+    </div>
+    <!-- End content -->
 
-<div class="container">
-    <form method="post" class="form-horizontal offset-sm-2 vert-offset-top-2" action="control">
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="username">Username:</label>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" id="username" name="username">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="password">Password:</label>
-            <div class="col-sm-6">
-                <input type="password" class="form-control" id="password" name="password">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Sign in</button>
-            </div>
-        </div>
-    </form>
-    <h3 class="col-sm-offset-2">{{error}}</h3>
-</div>
+    <!-- Footer -->
+    <div class="container-fluid footer navbar-default">
+        <h5> &copy crocodundee - 2019</h5>
+    </div>
+    <!-- End footer-->
 </body>
 </html>

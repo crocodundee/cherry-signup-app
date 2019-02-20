@@ -4,11 +4,10 @@
     color: #383d41;
 }
 
-/*
-.body{
-    background-color: whitesmoke;
+#locky{
+    font-size: 18pt;
+    color: #4e555b;
 }
-*/
 .vert-offset-top-1{
     margin-top: 1em;
 }
@@ -48,19 +47,13 @@ li{
     display:inline-block;
 }
 
-#locky{
-    text-align: left;
-    font-size: 18pt;
+.footer{
+    position: absolute;
+    bottom: 0;
 }
 
-.main{
-    /*background-color: #cce5ff;*/
+@media only screen {
+    .footer h5 {
+        margin-left: 47%;
+    }
 }
-
-/*
-ul li:hover{
-    border-bottom-color: white;
-    border-bottom-width: 3px;
-}
-*/
-
