@@ -59,3 +59,35 @@ form = """
         </div>
     </form>
 """
+
+reg_form = """
+    <form method="get" class="form-horizontal offset-sm-2 vert-offset-top-2" action="welcome">
+    <h4 class="offset-4">Welcome to Locky!</h4>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="username">Username:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="username" name="username">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="password">Password:</label>
+            <div class="col-sm-6">
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="confirm">Confirm password:</label>
+            <div class="col-sm-6">
+                <input type="password" class="form-control" id="confirm" name="confirm">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </div>
+    </form>
+"""
