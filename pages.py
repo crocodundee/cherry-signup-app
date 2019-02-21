@@ -61,7 +61,7 @@ form = """
 """
 
 reg_form = """
-    <form method="get" class="form-horizontal offset-sm-2 vert-offset-top-2" action="welcome">
+    <form method="post" class="form-horizontal offset-sm-2 vert-offset-top-2" action="welcome">
     <h4 class="offset-4">Welcome to Locky!</h4>
         <div class="form-group">
             <label class="control-label col-sm-2" for="username">Username:</label>
