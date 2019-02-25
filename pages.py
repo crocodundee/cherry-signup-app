@@ -91,3 +91,43 @@ reg_form = """
         </div>
     </form>
 """
+
+switch = """
+    <h1>The light switch</h1>
+    <form method="post"  action="ledControl" class="form-horizontal">
+        <input class="btn btn-default col-sm-4" type="submit" name="ledState" value="ON">
+        <input class="btn btn-default col-sm-4" type="submit" name="ledState" value="OFF">
+    </form>
+    <form method="post" action="reset" class="form-horizontal">
+        <input class="btn btn-default col-sm-4" type="submit" name="reset" value="reset">
+    </form>
+"""
+
+control_panel = """
+        <div class="media-container-row">
+            <div class="card p-3 col-12 col-md-6 col-lg-4 control-menu">
+                <div class="card-wrapper">
+                    <div class="card-img">
+                        <span class="glyphicon glyphicon-lock gly-menu"></span>
+                    </div>
+                        <h3>Locky control</h3>
+                    </div>
+            </div>
+            <div class="card p-3 col-12 col-md-6 col-lg-4 control-menu">
+                <div class="card-wrapper">
+                    <div class="card-img">
+                        <span class="glyphicon glyphicon-cog gly-menu"></span>
+                    </div>
+                    <h3>User configurate</h3>
+                </div>
+            </div>
+            <div class="card p-3 col-12 col-md-6 col-lg-4 control-menu">
+                <div class="card-wrapper">
+                    <div class="card-img">
+                        <span class="glyphicon glyphicon-home gly-menu"></span>
+                    </div>
+                    <h3>SmartHome</h3>
+                </div>
+            </div>
+        </div>
+"""

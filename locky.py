@@ -25,7 +25,21 @@ class Locky(object):
 class Control(object):
     @cherrypy.expose
     def index(self):
-        return control_html.render()
+        return control_html.render()#content = part.control_panel)
+
+    @cherrypy.expose
+    def ledControl(self, ledState):
+        if ledState == 'ON':
+            action = "Light is on"
+            #lightOn()
+        else:
+            action = "Light is off"
+            #lightOff()
+        return control_html.render()#content = part.control_panel)
+
+    @cherrypy.expose
+    def reset(self, reset):
+        return control_html.render()#content = part.control_panel)
 
 class Login(object):
     @cherrypy.expose
@@ -34,10 +48,13 @@ class Login(object):
 
     @cherrypy.expose
     def control(self, username, password):
-        if user.isUsersPassword(username, password):
-            raise cherrypy.HTTPRedirect("/control/")
+        if user.isUserExist(username):
+            if user.isUsersPassword(username, password):
+                raise cherrypy.HTTPRedirect("/control/")
+            else:
+                return login_html.render(content = part.form , result = "Uncorrect password")
         else:
-            return login_html.render(content = part.form , result = "Uncorrect username or password")
+            return login_html.render(content = part.form , result = "Please sign up to Locky")
 
 class SignUp(object):
     @cherrypy.expose

@@ -34,20 +34,22 @@ def isCorrectPassword(password):
     else:
         return False
 
-def isUserExist(username , password):
+def isUserExist(username):
     if getUserNames().count(username):
         return True
     else:
         return False
 
 def isUsersPassword(username, password):
-    login_st = False
     with open(users_env) as data:
         for d in data:
             user_data = d.split("/")
-            if (user_data[1] == username) and (user_data[2] == password):
-                login_st = True
-    return login_st
+            if (user_data[1] == username):
+                pwd = user_data[2].split("\n")
+                if pwd[0] == password:
+                    return True
+                else:
+                    return False
 
 class User(object):
     def __init__(self, username, password):
