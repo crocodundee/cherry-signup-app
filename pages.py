@@ -93,13 +93,10 @@ reg_form = """
 """
 
 switch = """
-    <h1>The light switch</h1>
-    <form method="post"  action="ledControl" class="form-horizontal">
-        <input class="btn btn-default col-sm-4" type="submit" name="ledState" value="ON">
-        <input class="btn btn-default col-sm-4" type="submit" name="ledState" value="OFF">
-    </form>
-    <form method="post" action="reset" class="form-horizontal">
-        <input class="btn btn-default col-sm-4" type="submit" name="reset" value="reset">
+    <h1 style="text-align: center;">The light switch</h1>
+    <form method="post" action="light" class="form-horizontal">
+        <input class="btn btn-default col-sm-4 offset-sm-1" type="submit" name="ledState" value="ON">
+        <input class="btn btn-default col-sm-4 offset-sm-1" type="submit" name="ledState" value="OFF">
     </form>
 """
 

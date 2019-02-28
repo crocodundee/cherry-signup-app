@@ -16,6 +16,7 @@ login_html = env.get_template("/static/login.html")
 error_html = env.get_template("/static/error.html")
 control_html = env.get_template("/static/control.html")
 signup_html = env.get_template("/static/signup.html")
+locky_ctrl_html = env.get_template("/static/locky_control.html")
 
 class Locky(object):
     @cherrypy.expose
@@ -25,20 +26,6 @@ class Locky(object):
 class Control(object):
     @cherrypy.expose
     def index(self):
-        return control_html.render()#content = part.control_panel)
-
-    @cherrypy.expose
-    def ledControl(self, ledState):
-        if ledState == 'ON':
-            action = "Light is on"
-            #lightOn()
-        else:
-            action = "Light is off"
-            #lightOff()
-        return control_html.render()#content = part.control_panel)
-
-    @cherrypy.expose
-    def reset(self, reset):
         return control_html.render()#content = part.control_panel)
 
 class Login(object):
@@ -76,6 +63,26 @@ class SignUp(object):
         else:
             return signup_html.render(content = part.reg_form, result = "User with this name is already exist")
 
+class LockyControl(object):
+    @cherrypy.expose
+    def index(self):
+        return locky_ctrl_html.render(content = part.switch)
+
+    @cherrypy.expose
+    def light(self, ledState):
+        if ledState == 'ON':
+            action = "<h2 style=\"text-align: center;\">Light is on</h2>"
+            #lightOn()
+        else:
+            action = "<h2 style=\"text-align: center;\">Light is off</h2>"
+            #lightOff()
+        return locky_ctrl_html.render(content = part.switch, result = action)#content = part.control_panel)
+
+#    @cherrypy.expose
+#    def reset(self, reset):
+#        raise cherrypy.HTTPRedirect("/control/")
+        #return locky_ctrl_html.render(content = part.switch, result = "Waiting your action")#content = part.control_panel)
+
 if __name__ == "__main__":
 
     config = {
@@ -107,6 +114,7 @@ if __name__ == "__main__":
 
     cherrypy.tree.mount(Locky(), '/', config=config)
     cherrypy.tree.mount(Control(), '/control')
+    cherrypy.tree.mount(LockyControl(), "/control/locky-control/")
     cherrypy.tree.mount(Login(), '/login')
     cherrypy.tree.mount(SignUp(), '/reg')
 

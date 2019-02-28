@@ -1,10 +1,15 @@
 import os, os.path
 import random
 import string
+import hashlib as hash
+#import bcrypt
 
 users_env = "D:\\python\\locky\\users\\login.txt"
 base_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 code_len = 9
+
+#def openf(file_path):
+#    return open(users_env, "r", encoding = "utf8")
 
 def getUserCode():
     str = ""
@@ -46,15 +51,16 @@ def isUsersPassword(username, password):
             user_data = d.split("/")
             if (user_data[1] == username):
                 pwd = user_data[2].split("\n")
-                if pwd[0] == password:
-                    return True
-                else:
-                    return False
+                return pwd[0] == hashPwd(password, user_data[0])
+
+def hashPwd(password, salt):
+    hash_str = hash.sha1(password.encode('utf-8') + salt.encode('utf-8')).hexdigest()
+    return hash_str
 
 class User(object):
     def __init__(self, username, password):
-        self.username = username
-        self.password = password
         self.code = getUserCode()
+        self.hash = hashPwd(password, self.code)
+        self.username = username
         new_user = open(users_env, "a")
-        new_user.write(self.code + "/" + self.username + "/" + self.password + "\n")
+        new_user.write(self.code + "/" + self.username + "/" + self.hash + "\n")
