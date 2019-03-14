@@ -1,8 +1,10 @@
 # --- Import modules
 import pages as part
-import logs as user
+#import logs as user
 import os, os.path
 import cherrypy
+import database as db
+import sqlite3 as dbase
 from cherrypy.lib import auth_basic
 
 # --- Jinja2 config
@@ -35,13 +37,14 @@ class Login(object):
 
     @cherrypy.expose
     def control(self, username, password):
-        if user.isUserExist(username):
-            if user.isUsersPassword(username, password):
+        """Here is place for user's session confirm"""
+        try:
+            if db.login(username, password):
                 raise cherrypy.HTTPRedirect("/control/")
             else:
-                return login_html.render(content = part.form , result = "Uncorrect password")
-        else:
-            return login_html.render(content = part.form , result = "Please sign up to Locky")
+                return login_html.render(content=part.form, result="Uncorrect username or password")
+        except db.UnknownUser:
+            return login_html.render(content=part.form, result="Please sign up")
 
 class SignUp(object):
     @cherrypy.expose
@@ -50,18 +53,17 @@ class SignUp(object):
 
     @cherrypy.expose
     def welcome(self, username, password, confirm):
-        check_user = user.getUserNames()
-        if (check_user.count(username) == 0):
-            if password == confirm:
-                if user.isCorrectPassword(password):
-                    temp = user.User(username, password)
-                    raise cherrypy.HTTPRedirect("/control/")
-                else:
-                    return signup_html.render(content=part.reg_form, result = "Uncorrect password type")
+        if password == confirm:
+            try:
+                user = db.User(username, password)
+            except db.UserExist:
+                return signup_html.render(content = part.reg_form, result = "User with this name is already exist")
+            except db.UncorrectPwdType:
+                return signup_html.render(content = part.reg_form, result = "Uncorrect password type")
             else:
-                return signup_html.render(content=part.reg_form, result = "Confirm your password")
+                raise cherrypy.HTTPRedirect("/control/")
         else:
-            return signup_html.render(content = part.reg_form, result = "User with this name is already exist")
+            return signup_html.render(content=part.reg_form, result = "Confirm your password")
 
 class LockyControl(object):
     @cherrypy.expose

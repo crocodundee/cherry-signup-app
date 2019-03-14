@@ -8,9 +8,6 @@ users_env = "D:\\python\\locky\\users\\login.txt"
 base_chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 code_len = 9
 
-#def openf(file_path):
-#    return open(users_env, "r", encoding = "utf8")
-
 def getUserCode():
     str = ""
     for i in range(code_len):
@@ -35,9 +32,9 @@ def getUserPwd():
 
 def isCorrectPassword(password):
     if len(password) >= 8 and password.isalnum():
-        return True
-    else:
         return False
+    else:
+        return True
 
 def isUserExist(username):
     if getUserNames().count(username):
